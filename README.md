@@ -23,6 +23,7 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [From Hello World to six job offers from Facebook, Airbnb, Salesforce…](https://www.sihui.io/from-hello-world-to-facebook-airbnb-salesforce/) #job #tech #student
 * [I passed the Google technical interviews; you can too](https://dev.to/emmabostian/i-passed-the-google-technical-interviews-you-can-too-4i6m)
 * [How to start freelancing](https://dev.to/study_web_dev/how-to-start-freelancing-the-basics-52d7)
+* [Negotiation techniques](https://dev.to/joshpuetz/salary-negotiation-for-people-that-hate-to-negotiate-with-josh-puetz-1f76) #job #negotiation
 
 ## profesional development
 
@@ -40,6 +41,7 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [A Review of the Neural History of NLP](https://ruder.io/a-review-of-the-recent-history-of-nlp/) #nlp
 * [Huggingface pretrained model RoBasquERTa](https://huggingface.co/mrm8488/RoBasquERTa) #nlp #euskera
 * [Huggingface pretrained model ixa-ehu/berteus-base-cased](https://huggingface.co/ixa-ehu/berteus-base-cased) #nlp #euskera
+* [L3AI 2020 conference on Rasa chatbox, NLP research, practical NLP tips](NLP/l3ai.md) #nlp
 
 ----------------------------------------------
 
