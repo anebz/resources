@@ -22,10 +22,10 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [How you can start a career in a different field without “experience”](https://www.freecodecamp.org/news/how-you-start-a-career-in-a-different-field-without-experience-tips-that-got-me-job-offers-from-7425f590f3eb/) #job #tech
 * [From Hello World to six job offers from Facebook, Airbnb, Salesforce…](https://www.sihui.io/from-hello-world-to-facebook-airbnb-salesforce/) #job #tech #student
 * [I passed the Google technical interviews; you can too](https://dev.to/emmabostian/i-passed-the-google-technical-interviews-you-can-too-4i6m)
-* [How to start freelancing](https://dev.to/study_web_dev/how-to-start-freelancing-the-basics-52d7)
+* [How to start freelancing](https://dev.to/study_web_dev/how-to-start-freelancing-the-basics-52d7) #job #freelance
 * [Negotiation techniques](https://dev.to/joshpuetz/salary-negotiation-for-people-that-hate-to-negotiate-with-josh-puetz-1f76) #job #negotiation
 
-## profesional development
+## profesional development (#profdev)
 
 * [How to be successful](https://blog.samaltman.com/how-to-be-successful) #profdev
 * [Survival tips for women in tech](https://patricia.no/2018/09/06/survival_tips_for_women_in_tech.html) #profdev #tech #women
@@ -34,22 +34,22 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [How to pick a career (that actually fits you)](https://getpocket.com/explore/item/how-to-pick-a-career-that-actually-fits-you) #profdev
 * [**Have you ever worked with an engineer who never leveled up?**](https://dev.to/sloan/have-you-ever-worked-with-an-engineer-who-never-leveled-up-2313) #profdev #tech
 * [How to ruin your career in 8 easy steps](https://dev.to/rinaarts/how-to-ruin-your-career-in-8-easy-steps-71) #profdev #tech
-* [Book: The culture map, by Erin Meyer](https://www.goodreads.com/book/show/22085568-the-culture-map) #profdev #book #culture
 
 ## NLP
 
 * [A Review of the Neural History of NLP](https://ruder.io/a-review-of-the-recent-history-of-nlp/) #nlp
 * [Huggingface pretrained model RoBasquERTa](https://huggingface.co/mrm8488/RoBasquERTa) #nlp #euskera
 * [Huggingface pretrained model ixa-ehu/berteus-base-cased](https://huggingface.co/ixa-ehu/berteus-base-cased) #nlp #euskera
-* [L3AI 2020 conference on Rasa chatbox, NLP research, practical NLP tips](NLP/l3ai.md) #nlp
+* [L3AI 2020 conference on Rasa chatbox, NLP research, practical NLP tips](NLP/l3ai.md) #nlp #conference
 
 ----------------------------------------------
 
-## personal development
+## personal development (#persdev)
 
 * [The ultimate guide to discovering your natural talents and strength](http://ayotheauthor.com/strengths-talents/) #persdev
 * [How to make yourself into a learning machine](https://superorganizers.substack.com/p/how-to-build-a-learning-machine) #persdev #learning
 * [How to be better at parties](https://www.nytimes.com/guides/smarterliving/be-better-at-parties) #persdev #social
+* [List of mental models and their explanations](mental_models.md) #persdev #mentalmodels
 
 ## tools
 
@@ -58,6 +58,8 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [Networking for founders](https://stripe.com/en-de/atlas/guides/networking) #tools #networking #profdev
 * [How to use Twitter to learn data science (or anything)](https://www.becomingadatascientist.com/2015/10/04/how-to-use-twitter-to-learn-data-science-or-anything/) #tools #twitter #datascience
 * [The Holloway guide to using Twitter](https://www.holloway.com/g/using-twitter) #tools #twitter
+* [Book: The culture map, by Erin Meyer](https://www.goodreads.com/book/show/22085568-the-culture-map) #profdev #book #culture
+* [Book notes on 'How to win friends and influence people'](Book notes/how-win-friends-influence-people.md) #tools #persdev #book #social
 
 ## culture
 
@@ -68,6 +70,10 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [Twitter CEO Jack Dorsey: the Rolling Stone interview](https://getpocket.com/explore/item/twitter-ceo-jack-dorsey-the-rolling-stone-interview) #culture#tech #interview
 * [Twitter thread: long bike rides](https://twitter.com/devonzuegel/status/1230947306330980352) #culture #bike #activity #twitter
 * [Twitter thread: history, Jim Crow laws](https://twitter.com/HacheFilardi/status/1276174717884469248) #history #us #spanish
+
+## technical online courses
+
+* [Notes on edX Neuroscience course](neuroscience.md) #onlinecourse #neuroscience
 
 ## utils
 
