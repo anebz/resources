@@ -8,7 +8,7 @@ The goal is to infer the effect of a treatment/policy on some outcome.
 
 Faced with a new disease and trying to minimize death, there are 2 treatments (T). A common one (A), and a scarce one (B). Patients can have a mild (0) or severe (1) condition (C). In the outcome (Y), the patient can either live (0) or die (1).
 
-![ ](img/covid-27-0.png){width=900}
+<img src="img/covid-27-0.png" width="85%">
 
 **Simpson's paradox**: looking at just the total numbers, it seems like A is doing better than B, but looking at each specific condition, at mild and severe B does better. The paradox comes from unequal weighting: the total for T=A is heavily weighted by the mild cases, because there are so many more than severe cases. In T=B, the severe group has a much bigger weight.
 
@@ -16,7 +16,7 @@ Faced with a new disease and trying to minimize death, there are 2 treatments (T
 
 Let us consider two scenarios: in scenario 1, **the condition is a cause of the treatment**, and both are a cause of the outcome. That means, the treatment is chosen based on condition, and outcome is determined by both the condition and the treatment.
 
-![ ](img/scen1.png){width=200}
+<img src="img/scen1.png" width="30%">
 
 If a patient has C=0, they get T=A because doctors save the scarce treatment (B) for the severe cases. If a patient has C=1, they get T=B. Looking at the mortality rate table, most people with C=0 get T=A, and most people with C=1 get T=B.
 
@@ -26,7 +26,7 @@ If a patient has C=0, they get T=A because doctors save the scarce treatment (B)
 
 In scenario 2, **treatment is a cause of condition**, and both are a cause of the outcome.
 
-![ ](img/scen2.png){width=200}
+<img src="img/scen2.png" width="30%">
 
 If a patient gets T=B, they might wait a long time to take it because it is scarce, and the condition worsens to C=1. That is why among people with T=B, most of them have C=1, because they get sicker and transition from C=0 to C=1. With T=A, the patient gets it very fast and they remain in C=0. In this scenario, **T=A is preferred**.
 
@@ -36,7 +36,7 @@ The course will use the term *association* to refer to statistical dependence. C
 
 > Sleeping with shoes on is strongly correlated with waking up with a headache. But both sleeping with shoes on and headache can be explained by a common cause: drinking the night before (this is called a confounder)
 
-![ ](img/shoes.png){width=300}
+<img src="img/shoes.png" width="30%">
 
 Causal association states that the headache is caused by sleeping with shoes. The confounding association says that drinking affects both sleeping with shoes, and waking up with a headache. The association between shoes and headache is facilitated by the confounder. Total association (e.g. correlation) is the mixture of causal and confounding association. Both variables affect the outcome. This additional confounding association is why correlation does not imply causation.
 
@@ -74,6 +74,6 @@ In the disease example, the only variable is condition, so we adjust for that. W
 
 Assuming the scenario 1, where condition is a cause for treatment, we have to marginalize over C (the only variable). Since C is discrete, we can take a sum over C and calculate the probabilities for each condition.
 
-![ ](img/covid-27.png){width=900}
+<img src="img/covid-27.png" width="85%">
 
 In the naive example (see first picture), the probability of the condition is wrong, because condition is a cause of treatment and it has not been taken into consideration. It only depends on the people taking the specific treatment. In this case, the probability of condition being mild = all the people with this condition, divided by all the people in total. This probability looks *across* all treatments, across the whole dataset.
