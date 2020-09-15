@@ -1,13 +1,13 @@
-# [Intro to causal inference notes](causalcourse.com)
+# [Intro to causal inference notes](http://www.causalcourse.com)
 
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![Ask me anything!](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
-[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/issues/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/anebz/resources/graphs/commit-activity)
+[![Ask me anything!](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://www.twitter.com/aberasategi)
+[![GitHub Issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/anebz/resources/issues/)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-* [Textbook for the course](https://www.bradyneal.com/Introduction_to_Causal_Inference-Sep13_2020-Neal.pdf)
-    - Changes regularly, check causalcourse.com for the latest update
+* [Textbook for the course (pdf)](https://www.bradyneal.com/Introduction_to_Causal_Inference-Sep13_2020-Neal.pdf)
+    - Changes regularly, check www.causalcourse.com for the latest update
 * [Code for the textbook](https://github.com/bradyneal/causal-book-code)
 
 ## Table of contents
@@ -27,6 +27,9 @@
     2. The adjustment formula
     3. Statistics terminology explanation
     4. A complete example with estimation
+3. [Causal graphs](#3-causal-graphs)
+    1. Bayesian networks and causal graphs
+    2. Basic building blocks of graphs
 
 --------------------------------------
 
@@ -180,3 +183,45 @@ Following the ATE simplification due to assumptions, we can use linear regressio
 <div style="text-align:center"><img src="img/est_ate.png" width="70%"></div>
 
 This system has some limitations: assuming a linear parametric form, we assume that the causal effect is the same for all individuals. &beta; might be different. Yi(1) - Yi(0) = &alpha; * 1 + &beta;xi - &alpha; * 0 - &beta;xi = &alpha;
+
+## 3 Causal graphs
+
+This course handles directed acyclic graphs (DAGs). Nodes are connected through edges, paths can be established following these edges. Two nodes are immoral when they are both parents of a common node, but are not connected between them.
+
+### 3.1. Bayesian networks and causa graphs
+
+When obtaining the probability of a joint distribution, P(x1, ..., xn), we can decompose it as a product of P(x1) * P(x2|x1) * P(x3|x1, x2) and so on. Modelling all these parameters requires a lot of computation. But if x4 depends on x3 and on nothing else, P(x4|x1, x2, x3) = P(x4|x3) it becomes much simpler.
+
+> Local Markov assumption
+
+Given its parents in the DAG, a node X is independent of all of its non-descendants. The big product for the probability of the joint distribution can be simplified. With this assumption, each node depends only on its parents --> bayesian network factorization. This assumption refers to statistical independence.
+
+<img src="https://render.githubusercontent.com/render/math?math=\Large P(x_1, ..., x_n) = \prod P(x_i | pa_i)">
+
+With this assumption, there might be an edge between two nodes, but the nodes can be independent.
+
+> Minimality assumption
+
+This assumes the local Markov assumption, and also that adjacent nodes in the DAG are dependent. Connected nodes are not independent. This assumption refers to statistical dependence.
+
+> Causal edges assumption
+
+A variable X is a **cause** of a variable Y if Y can change in response to changes in X. In a directed graph, every parent is a direct cause of all its children. This referst o causal dependencies.
+
+### 3.2. Basic building blocks of graphs
+
+Graphical building blocks: chain, fork and immorality.
+
+<div style="text-align:center"><img src="img/graph_block.png" width="50%"></div>
+
+This is how association flows, dependence in chains and forks.
+
+<div style="text-align:center"><img src="img/graph_dependence.png" width="50%"></div>
+
+To obtain independence between X1 and X3, we can block the path
+
+<div style="text-align:center"><img src="img/graph_dependence_block.png" width="50%"></div>
+
+And so to prove conditional independence in chains, we can use these concepts
+
+<div style="text-align:center"><img src="img/chain_condind.png" width="75%"></div>
