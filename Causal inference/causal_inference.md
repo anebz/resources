@@ -88,7 +88,7 @@ In the specific example of the headache and the pill, the difference between pot
 
 In general, because of the confounding association, E[Y(1)] - E[Y(0)] does not equal E[Y|T=1] - E[Y|T=0], because this is a mixture of confounding association and causal association, which is not causal since the condition has a confounding effect.
 
-To obtain causation, we need to make groups comparable, we need to bypass the effect of condition in the treatment. **Randomized control trials (RCT)**randomly distribute the subjects into treatment group or control group, ensuring that condition cannot be a cause of the treatment. In RCT, the 'drunk people' are evenly distributed among the two groups. 
+To obtain causation, we need to make groups comparable, we need to bypass the effect of condition in the treatment. **Randomized control trials (RCT)** randomly distribute the subjects into treatment group or control group, ensuring that condition cannot be a cause of the treatment. In RCT, the 'drunk people' are evenly distributed among the two groups. If the distribution of the outcome varies by levels of the assigned intervention, we say that A has a causal effect on Y.
 
 ### 1.4. Observational studies
 
@@ -144,9 +144,9 @@ The conditional ATE is E[Y(1) - Y(0) | X], which assuming the conditional exchan
 
 Can we simply condition on many covariates to achieve unconfoundedness? No, because it violates positivity, there is a tradeoff betweeen unconfoundedness and positivity.
 
-**Positivity** says that for all values of covariates present in the population (anything with probability > 0), the probability of treatment is > 0 and < 1 for all values of treatment. 0 < P(T=1|X=x) < 1. In the populatoin X=x, if no one is given the treatmen we cannot observe the causal effect of the treatment, because no one got it. And same if everyone got the treatment.
+**Positivity** says that for all values of covariates present in the population (anything with probability > 0), the probability of treatment is > 0 and < 1 for all values of treatment. 0 < P(T=1|X=x) < 1. In the populatoin X=x, if no one is given the treatment we cannot observe the causal effect of the treatment, because no one got it. And same if everyone got the treatment.
 
-Another perspective to positivity is **overlap**. If the population subsets that have received no treatmen (P(X|T=0)) and the population that have all received treatment (P(X|T=1)) have no overlap at all, there is a severe positivity violation. If they overlap, there is no violation among the covariates where there's overlap but in the covariates with no overlap, there is severe positivity violation. If they are completely overlapped, there is no positivity violation. This is the ideal situation for identifiability.
+Another perspective to positivity is **overlap**. If the population subsets that have received no treatment (P(X|T=0)) and the population that have all received treatment (P(X|T=1)) have no overlap at all, there is a severe positivity violation. If they overlap, there is no violation among the covariates where there's overlap but in the covariates with no overlap, there is severe positivity violation. If they are completely overlapped, there is no positivity violation. This is the ideal situation for identifiability.
 
 There is a positivity-unconfoundedness tradeoff: the more covariates you condition on, the more likely you are to satisfy unconfoundedness. But the more covariates you condition on, the worse positivity gets. If you want to estimate ATE (= sum_x(E[Y|T=1, X] - E[Y|T=0, X])) when you have a severe positivity violation, no overlap at all, you have to extrapolate because you are missing data. When summing over all x in the first part, there is no one who hasn't received treatment, there is no data to use. And same for the second part.
 
@@ -206,7 +206,7 @@ This assumes the local Markov assumption, and also that adjacent nodes in the DA
 
 > Causal edges assumption
 
-A variable X is a **cause** of a variable Y if Y can change in response to changes in X. In a directed graph, every parent is a direct cause of all its children. This referst o causal dependencies.
+A variable X is a **cause** of a variable Y if Y can change in response to changes in X. In a directed graph, every parent is a direct cause of all its children. This refers to causal dependencies. Causation is not symmetric, it only flows in one direction.
 
 ### 3.2. Basic building blocks of graphs
 
@@ -222,6 +222,27 @@ To obtain independence between X1 and X3, we can block the path
 
 <div style="text-align:center"><img src="img/graph_dependence_block.png" width="50%"></div>
 
-And so to prove conditional independence in chains, we can use these concepts
+And so to prove conditional independence in chains, we can use these concepts. Equivalent for fork graphs.
 
 <div style="text-align:center"><img src="img/chain_condind.png" width="75%"></div>
+
+In immoralities, X1 and X3 are not associated. X2 (collider) blocks association even when we're not conditioning on it. P(x1, x3) = P(x1) * P(x3).
+
+If we condition on a collider, it unblocks the path, induces dependence between X1 and X3. Opposite as chains and forks.
+
+> As an example, X1 is good-looking, X3 is kindness, and X2 = X1 & X3 is relationship status. In the general population, there is no association between X1 and X3. But if we condition for X2, if we look only at single people, there is an induced association (selection bias) between looks and kindness.
+
+When a collider is conditioned, it induces association between its parents. If you condition on a descendant of X2, that also induces association between X1 and X3.
+
+### 3.3. The flow of association and causation
+
+A path between nodes X and Y is blocked by a conditioning set Z if either of the following is true:
+
+1. Along the path, there is a chain ... -> W -> ... or a fork ... <- W -> ... where W is in the conditioning set Z.
+2. On the path, there is a colider not in the conditioning set Z, and no descendants are in this set either.
+
+> d-separation
+
+Two sets of nodes X and Y are d-separated by a set of nodes Z if all paths between (any node in) X and (any node in) Y are blocked by Z. It implies independence between X and Y.
+
+This is the global Markov assumption, which is equivalent to local Markov assumption. Which is just called Markov assumption.
