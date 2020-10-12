@@ -30,6 +30,7 @@
 3. [Causal graphs](#3-causal-graphs)
     1. Bayesian networks and causal graphs
     2. Basic building blocks of graphs
+4. [Causal models](#4-causal-models)
 
 --------------------------------------
 
@@ -246,3 +247,85 @@ A path between nodes X and Y is blocked by a conditioning set Z if either of the
 Two sets of nodes X and Y are d-separated by a set of nodes Z if all paths between (any node in) X and (any node in) Y are blocked by Z. It implies independence between X and Y.
 
 This is the global Markov assumption, which is equivalent to local Markov assumption. Which is just called Markov assumption.
+
+## 4 Causal models
+
+### The do-operator
+
+When we move from statistical quantities to causal quantities. It makes the distinction between conditioning and intervening.
+
+Conditioning is just restricting the data to a specific subset. But intervening means altering the whole dataset, not just a subset.
+
+* An interventional distribution: P(Y(t)=y) == P(Y=y \| do(T=1)) == P(y \| do(t)).
+* ATE: E[Y | do(T=1)] - E[Y | do(T=0)]
+* An observational distribution: P(Y, T, X) = P(Y | T=t). No intervention on the treatment
+
+Identification: taking a causal estimand and turning it into a statistical estimand. P(y \| do(t)) --> P(y \| t). We can do this by looking at our causal model. These two things are equal if there is no confounding. If there is, P(y \| t) = E<sub>X</sub>[P(y \| t, X)].
+
+### Main assumption: modularity
+
+The causal mechanism for a specific variable in the causal graph is P(x<sub>i</sub> \| pa<sub>i</sub>), all the parents of that variable and all their arrows into that variable.
+
+The **modularity assumption** says that if we intervene on a node X, then only the mechanism P(x<sub>i</sub> \| pa<sub>i</sub>) changes. All other mechanisms P(x<sub>j</sub> \| pa<sub>j</sub>) where i!=j remain unchanged. In other words, the causal mechanisms are modular.
+
+<div style="text-align:center"><img src="img/mod_assum.png" width="75%"></div>
+
+To manipulate a graph, we take the observational data. Pick a variable T, remove its parents. With the modularity assumption, all other factors remain the same so we only manipulate T. With this assumption we can simplify this formula using the **truncated factorization**:
+
+<div style="text-align:center"><img src="img/trunc.png" width="75%"></div>
+
+With this, we can identify P(y \| do(t)) faster.
+
+<div style="text-align:center"><img src="img/trunc_ex.png" width="75%"></div>
+
+### Backdoor adjustment
+
+By intervening on T, and deleting its parents, we can block backdoor / noncausal paths. A set of variables W satisfies the backdoor criterion relative to T and Y if the following are true:
+
+1. W blocks all backdoor paths from T to Y
+2. W does not contain any descendants of T
+
+If W satisfies the backdoor criterion, W is a sufficient adjustment set. W is sufficient to adjust for to get the causal effect of T on Y. Proof on slide 20.
+
+How does this backdoor adjustment relate to the adjustment formula in the potential outcomes chapter? Answer in section 4.4.1 of the ICI book.
+
+### Structural causal models
+
+Structural equation for A as a cause of B: B := f(A, U) where U is some randomness.
+
+If we model the causal mechanism of a variable, this variable is referred to as an *endogenous variable*. And those variables that we do not model how they are caused, and usually have no parents, are *exogenous variables*.
+
+A structural causal model (SCM) is a tuple of the following sets:
+
+1. A set of endogenous variables
+2. A set of exogenous variables
+3. A set of functions, one to generate each endogenous variable as a function of the other variables
+
+Given an SCM M and an interventional SCM M<sub>t</sub> that we get by performing the intervention do(T=t), the modularity assumption states that M and M<sub>t</sub> share all of their structural equations except the structural equation for T, which is T := t in M<sub>t</sub>.
+
+M:
+
+* T := f<sub>T</sub>(X, U<sub>T</sub>)
+* Y := f<sub>Y</sub>(X, T, U<sub>Y</sub>)
+
+M<sub>t</sub>:
+
+* T := t
+* Y := f<sub>Y</sub>(X, T, U<sub>Y</sub>)
+
+Why don't we condition on descendants of treatment?
+
+1. We might block causal associations
+2. We might include collider bias, new post-treatment association, such as the case of immorality
+
+### A complete example with estimation
+
+Effect of sodium intake on blood pressure. Covariates are W, age, and Z, amount of protein excreted in urine. With a simulation, we get a 'true' ATE of 1.05.
+
+<div style="text-align:center"><img src="img/4ex_graph.png" width="75%"></div>
+
+We do not condition on post-treatment covariates like Z because it would give us collider bias, we only condition on W. After estimation:
+
+<div style="text-align:center"><img src="img/4ex_estimate.png" width="75%"></div>
+
+19% error comes from controlling for Z, which creates collider bias and brings the error up.
