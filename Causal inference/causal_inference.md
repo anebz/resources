@@ -31,6 +31,15 @@
     1. Bayesian networks and causal graphs
     2. Basic building blocks of graphs
 4. [Causal models](#4-causal-models)
+    1. Do operator
+    2. Modularity assumption
+    3. Backdoor adjustment
+    4. Structural causa models
+5. [Randomized experiments and identification](#5-randomized-experiments-and-identification)
+    1. Randomized experiments
+    2. Frontdoor adjustment
+    3. Pear's do-calculus
+    4. Determining identifiability from a graph
 
 --------------------------------------
 
@@ -280,6 +289,8 @@ With this, we can identify P(y \| do(t)) faster.
 
 ### Backdoor adjustment
 
+This is the most common example of identification: we can identify causal effects via the backdoor adjustment.
+
 By intervening on T, and deleting its parents, we can block backdoor / noncausal paths. A set of variables W satisfies the backdoor criterion relative to T and Y if the following are true:
 
 1. W blocks all backdoor paths from T to Y
@@ -329,3 +340,57 @@ We do not condition on post-treatment covariates like Z because it would give us
 <div style="text-align:center"><img src="img/4ex_estimate.png" width="75%"></div>
 
 19% error comes from controlling for Z, which creates collider bias and brings the error up.
+
+## 5 Randomized experiments and identification
+
+### Randomized experiments
+
+It is not possible to prove unconfoundedness or prove that the backdoor criterion has been satisfied, because there always could be an unobserved confounders. This is a problem always apparent in observational studies. With RTC, unconfoundedness is guaranteed. The groups in a situation can be made comparable. Some perspectives on RTCs:
+
+1. Comparability and covariate balance
+    * Treatment and control groups are the same in all aspects except treatment. The distribution of all their covariates are the same. Therefore, the difference in observed outcomes between these 2 groups must be because of the treatment. Covariate balance -> association = causation.
+    * Covariate balance exists if the distribution of covariates X is the same across treatment groups. P(X | T=1) =(d) P(X | T=0). =(d) means distribution equality.
+    * *Proof that randomization implies covariate balance*: T is not determined by X, T is independent of X. P(X | T=1) =(d) P(X) and P(X | T=0) =(d) P(X), therefore P(X | T=1) =(d) P(X | T=0)
+    * *Proof that covariate balance implies association is causation*: <div style="text-align:center"><img src="img/rct_ass_caus.png" width="75%"></div>
+2. Exchangeability
+    * It is not relevant which group gets the treatment and which doesn't, because groups are comparable. The assignation of treatment is exchangeable among the two groups. Randomization implies exchangeability.
+3. No backdoor paths
+    * In a graph with T, a confounder X and Y, T is decided randomly, not affected by X. There are therefore no backdoor paths, through X or any other unobserved variables either.
+
+### Frontdoor adjustment
+
+<div style="text-align:center"><img src="img/frontd_adjust.png" width="35%"></div>
+
+In a graph where there is an unobserved confounder, the backdoor path cannot be blocked. With he frontdoor adjustment, it is still possible to identify the causal effect of T on Y. All the causal association flows through M, so we can *focus* on M and isolate the causal association. 3 steps:
+
+1. Identify the causal effect of T on M
+    * P(m | do(t)) = P(m | t). because there is no backdoor path.
+2. Identify the causal effect of M on Y
+    * P(y | do(m)) = &sum;<sub>t</sub> P(y | m,t) P(t). There is a backdoor path (M -> T -> W -> Y), but we can block it by conditioning on T. Use T as a sufficient adjustment set and use the backdoor adjustment.
+3. Combine the above steps to identify the causal effect of T on Y
+    * **frontdoor adjustment formula**: P(y | do(t)) = &sum;<sub>m</sub> P(y | do(m)) P(m | do(t)) = &sum;<sub>m</sub> P(m | t) &sum;<sub>t'</sub> P(y | m,t') P(t')
+
+A set of variables M satisfies the frontdoor criterion relative to T and Y if the following are true:
+
+1. M completely mediates the effect of T on Y (all causal paths from T to Y go through M)
+2. There is no unblocked backdoor path from T to M
+3. All backdoor paths from M to Y are blocked by T
+
+Proof of frontdoor adjustment using the truncated factorization in section 6.1. of the course book
+
+### Pear's do-calculus
+
+It neables the identification of identifiable causal quantities. P(Y \| do(T=t), X=x) where Y, T and X are arbitrary sets. There can be multiple treatments and/or multiple outcomes. Some notation for a causal graph G:
+
+* G<sub>X</sub> is when all children of X are cut off
+* G<sub>X</sub>(with a line over it) is when all parents of X are cut off
+* G<sub>X</sub>(with a line over it)<sub>Z</sub>(with a line under it) is when all parents of X are cut off and Z's children are cut off
+
+<div style="text-align:center"><img src="img/docalc_r1.png" width="75%"></div>
+<div style="text-align:center"><img src="img/docalc_r2.png" width="75%"></div>
+<div style="text-align:center"><img src="img/docalc_r3.png" width="75%"></div>
+
+### Determining identifiability from a graph
+
+See example in video or slides 35-40.
+
