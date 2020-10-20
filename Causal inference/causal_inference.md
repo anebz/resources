@@ -40,6 +40,11 @@
     2. Frontdoor adjustment
     3. Pear's do-calculus
     4. Determining identifiability from a graph
+6. [Estimation](#6-estimation)
+    1. Conditional outcome modeling
+    2. Increasing data efficiency
+    3. Propensity scores and IPW
+    4. Other methods
 
 --------------------------------------
 
@@ -394,3 +399,49 @@ It neables the identification of identifiable causal quantities. P(Y \| do(T=t),
 
 See example in video or slides 35-40.
 
+## 6 Estimation
+
+Once we identify statistical estimands from a causal estimand, we can make an estimation, a number, from this statistical estimand.
+
+### Conditional outcome modeling (COM)
+
+Conditional ATE (CATE) = &tau;(x) = E[Y(1) - Y(0) | X=x]
+
+We assume unconfoundedness and positivity, therefore &tau; = E<sub>W</sub>[E[Y|T=1, W] - E[Y|T=0, W]] = E<sub>W</sub>[&mu;(1,W) - &mu;(1,W)]. This is a statistical estimand, and &mu; is the conditional outcome model.
+
+<div style="text-align:center"><img src="img/ate_com.png" width="75%"></div>
+
+When dealing with high dimensions and many weights, the model might ignore *t* (treatment), it could assign it 0 weights. Because it is only one dimension. The estimates of ATE or CATE could be biased towards zero.
+
+### Increasing data efficiency
+
+How to ensure that the model doesn't ignore *t*? We can use grouped COM (GCOM) estimation, two models for each treatment. We don't need *t* as input anymore. In COM, the single model is trained with all the data. Now in GCOM, model for T=1 is fed treatment group data, and the model for T=0 is trained with control group data. The models can have **higher variance than what they would if they were trained with all the data**.
+
+<div style="text-align:center"><img src="img/ate_com.png" width="75%"></div>
+
+Alternative: TARNet hybrid architecture, all data is used for the model, W is the only input, and then the model breaks into 2 heads one for each treatment. Each head uses one part of the data, treatment data for T=1 and control data for T=0.
+
+X-Learner (Künzel et al., 2019) does the following:
+
+1. Make an estimation for T=1 and T=0 as a function of X, assuming X is a sufficient adjustment set and is all observed covariates
+2. Impute ITEs (individual treatment effects). Compare the observed output and the model's estimation for the treatment group and for the control group. For the treatment group for example, ITE = Y<sub>i</sub>(1) - &mu;<sub>1</sub>(x<sub>i</sub>). We use the data from one outcome but all of the data from the treatment group.
+3. Fit a model to predict ITE(1, i) from x<sub>i</sub> in treatment group, and fit a model to predict ITE(0, i) from x<sub>i</sub> in treatment group
+4. Aggregate these two models with a weighting function.
+
+### Propensity scores and IPW (inverse probability weighting)
+
+The propensity for taking treatment, how likely you are to take treatment, is e(W) = P(T=1|W). Given positivity, unconfoundedness given W implies unconfoundedness given e(W). Even if W is high dimensional, e(W) is only a scalar. Instead of conditioning on W, we can condition on e(W) and reduce complexity.
+
+See proof in slide 22 or in the course book in appendix A.2.
+
+Propensity has an implication for the positivity-unconfoundedness tradeoff. Overlap decreases with the dimensionality of the adjustment set. The propensity score reduces the dimensionality of the adjustment set done to 1. Unfortunately, we don't have access to e(W). The best we can do is model it with logistic regression for instance.
+
+Using e(W) instead of W doesn't solve positivity issues when W is high-dimensional.
+
+> Pseudo-populations
+
+We create pseudo-populations (reweighted populations) so that here, association is causation. We rewrite all examples by the IPW. See more about IPW in the course book in Appendix A.3
+
+### Other methods
+
+We can both model &mu;(t, w) and e(w). For example with *doubly robust methods*. See section 7.7 in the course book for other methods which include matching, double machine learning, causal trees and forests.
