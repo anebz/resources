@@ -45,6 +45,15 @@
     2. Increasing data efficiency
     3. Propensity scores and IPW
     4. Other methods
+7. [Unobserved confounding](#7-unobserved-confounding)
+    1. Bounds
+        1. No-assumptions bound
+        2. Monotone treatment response
+        3. Monotone treatment selection
+        4. Optimal treatment selection
+    2. Sensitivity analysis
+        1. Linear single confounder
+        2. Towards more gneral settings
 
 --------------------------------------
 
@@ -445,3 +454,32 @@ We create pseudo-populations (reweighted populations) so that here, association 
 ### Other methods
 
 We can both model &mu;(t, w) and e(w). For example with *doubly robust methods*. See section 7.7 in the course book for other methods which include matching, double machine learning, causal trees and forests.
+
+## 7 Unobserved confounding
+
+Up until now, we have adjusted for confounders. But we can't adjust for unobserved confounders.
+
+### Bounds
+
+Having no unobserved confounding is unrealistic. The assumption of unconfoundedness is very strong, maybe we can make a weaker assumption that the ATE is inside an interval. We don't get the exact measure of the ATE, but only an interval.
+
+#### No-assumptions bound
+
+The outcome is bounded. For every t, a <= Y(t) <= b. ATE = E[Y(1) - Y(0)] is between (a-b) and (b-a), so it has a length limit of 2(b-a). With the no-assumptions bound, this can be cut in half. See more in slide 9 about the observational-counterfactual decomposition and how that means that this interval can be cut in half. To make it even slower, we can use the following techniques:
+
+* **Monotone treatment response**
+    - The assumption is that treatment always helps, that for every t, Y<sub>i</sub>(1) >= Y<sub>i</sub>(0). Every ITE is nonnegative, so the ATE is nonnegative.
+* **Monotone treatment selection**
+    - The assumption is that the potential outcomes of the treatment groups' are better than than the ones from the control group. E[Y(1)|T=1] >=E[Y(1)|T=0] and E[Y(0)|T=1] >=E[Y(0)|T=0]. The ATE is bounded from above by the associational difference: E[Y(1) - Y(0)] <= E[Y|T=1] - E[Y|T=0]
+* **Optimal treatment selection**
+    - The assumption is that individuals always receive the treatment group that is best for them.
+    - If T<sub>i</sub>=1, then Y<sub>i</sub>(1) >= Y<sub>i</sub>(0)
+    - If T<sub>i</sub>=0, then Y<sub>i</sub>(0) >= Y<sub>i</sub>(1)
+    - E[Y(1)|T=0] <= E[Y|T=0] and E[Y(1)|T=0] <= E[Y|T=1]
+
+### Sensitivity analysis
+
+We cast our ATE estimate as a function of how strongly the confounders affect the treatment + how strongly the confounders affect the outcome. In this section, we still assume unconfoundedness, but we assume that this is based on W (observed confounder) and U (unobserved confounder).
+
+* Linear single confounder
+* Towards more gneral settings
