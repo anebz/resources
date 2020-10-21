@@ -2,6 +2,13 @@
 
 Curated list of resources for various topics, articles, tutorials, etc I've found useful.
 
+## Book notes
+
+* [How to win friends and influence people - Dale Carnegie](Book notes/how-win-friends-influence-people.md) #tools #persdev #book #social
+* [An introduction to decision theory - Martin Peterson](An Introduction to Decision Theory/) #economics #persdev #book [Book link](https://www.goodreads.com/book/show/6627107-an-introduction-to-decision-theory)
+* [Foundations of statistical natural language processing - Manning, Schütze](NLP/Foundations of statistical natural language processing) #nlp #book
+* [Einführung in der Computerlinguistik](NLP/Einführung in der Computerlinguistik) #nlp #book [Book link](https://www.hugendubel.de/de/buch_gebunden/kai_uwe_carstensen_cornelia_ebert-computerlinguistik_und_sprachtechnologie-8519961-produkt-details.html)
+
 ## for students
 
 * [How to email your professor](https://medium.com/@lportwoodstacer/how-to-email-your-professor-without-being-annoying-af-cf64ae0e4087) #student #email
@@ -35,6 +42,7 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [How to pick a career (that actually fits you)](https://getpocket.com/explore/item/how-to-pick-a-career-that-actually-fits-you) #profdev
 * [**Have you ever worked with an engineer who never leveled up?**](https://dev.to/sloan/have-you-ever-worked-with-an-engineer-who-never-leveled-up-2313) #profdev #tech
 * [How to ruin your career in 8 easy steps](https://dev.to/rinaarts/how-to-ruin-your-career-in-8-easy-steps-71) #profdev #tech
+* [El rol de engineering manager: ayudando a crecer sin quemar](https://medium.com/@flopezluis/el-rol-del-engineering-manager-ayudando-a-crecer-sin-quemar-8b19a253016e) #profdev
 
 ## NLP
 
@@ -60,7 +68,6 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [How to use Twitter to learn data science (or anything)](https://www.becomingadatascientist.com/2015/10/04/how-to-use-twitter-to-learn-data-science-or-anything/) #tools #twitter #datascience
 * [The Holloway guide to using Twitter](https://www.holloway.com/g/using-twitter) #tools #twitter
 * [Book: The culture map, by Erin Meyer](https://www.goodreads.com/book/show/22085568-the-culture-map) #profdev #book #culture
-* [Book notes on 'How to win friends and influence people'](Book notes/how-win-friends-influence-people.md) #tools #persdev #book #social
 
 ## culture
 
@@ -70,7 +77,7 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [The friendship that made Google huge](https://www.newyorker.com/magazine/2018/12/10/the-friendship-that-made-google-huge) #culture #tech #interview
 * [Twitter CEO Jack Dorsey: the Rolling Stone interview](https://getpocket.com/explore/item/twitter-ceo-jack-dorsey-the-rolling-stone-interview) #culture#tech #interview
 * [Twitter thread: long bike rides](https://twitter.com/devonzuegel/status/1230947306330980352) #culture #bike #activity #twitter
-* [Twitter thread: history, Jim Crow laws](https://twitter.com/HacheFilardi/status/1276174717884469248) #history #us #spanish
+* [Twitter thread: history, Jim Crow laws](https://twitter.com/HacheFilardi/status/1276174717884469248) #history #us
 
 ## technical online courses
 
