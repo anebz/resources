@@ -5,6 +5,7 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 ## Book notes
 
 * [How to win friends and influence people - Dale Carnegie](Book notes/how-win-friends-influence-people.md) #tools #persdev #book #social
+* [48 laws of power](Book notes/48-laws-power.md) #tools #book
 * [An introduction to decision theory - Martin Peterson](An Introduction to Decision Theory/) #economics #persdev #book [Book link](https://www.goodreads.com/book/show/6627107-an-introduction-to-decision-theory)
 * [Foundations of statistical natural language processing - Manning, Schütze](NLP/Foundations of statistical natural language processing) #nlp #book
 * [Einführung in der Computerlinguistik](NLP/Einführung in der Computerlinguistik) #nlp #book [Book link](https://www.hugendubel.de/de/buch_gebunden/kai_uwe_carstensen_cornelia_ebert-computerlinguistik_und_sprachtechnologie-8519961-produkt-details.html)
