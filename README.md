@@ -32,7 +32,8 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [I passed the Google technical interviews; you can too](https://dev.to/emmabostian/i-passed-the-google-technical-interviews-you-can-too-4i6m)
 * [How to start freelancing](https://dev.to/study_web_dev/how-to-start-freelancing-the-basics-52d7) #job #freelance
 * [Negotiation techniques](https://dev.to/joshpuetz/salary-negotiation-for-people-that-hate-to-negotiate-with-josh-puetz-1f76) #job #negotiation
-* [Tips for CV](https://twitter.com/kadikraman/status/1271742160111632384) #job 
+* [Tips for CV](https://twitter.com/kadikraman/status/1271742160111632384) #job
+* [🔥 **Fearless salary negotiation**](https://fearlesssalarynegotiation.com/) #job #negotiation
 
 ## profesional development (#profdev)
 
