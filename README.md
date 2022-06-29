@@ -22,6 +22,7 @@ Curated list of resources for various topics, articles, tutorials, etc I've foun
 * [Missing CS semester: tutorial](https://missing.csail.mit.edu/) #code
 * [The cold start problem: how to build your machine learning portfolio](https://towardsdatascience.com/the-cold-start-problem-how-to-build-your-machine-learning-portfolio-6718b4ae83e9) #code
 * [16 front-end projects (with designs) to help improve your coding skills](https://dev.to/frontendmentor/16-front-end-projects-with-designs-to-help-improve-your-coding-skills-5ajl) #code #frontend
+* [The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/) #code
 
 ## 🤵 job hunting
 
